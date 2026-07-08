@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/sonaltamse/SkillSync#readme",
+  "bugs": {
+    "url": "https://github.com/sonaltamse/SkillSync/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonaltamse/SkillSync.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
