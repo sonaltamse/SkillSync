@@ -1,10 +1,14 @@
 import  "dotenv/config";
 import express from "express";
 import cors from "cors";
+import dns from "dns";
 import healthRoutes from "./routes/healthRoutes.js";
 import { config } from "./config/env.js";
 import { connectToDatabase } from "./config/db.js";
 import skillRoutes from "./routes/skillRoutes.js";
+
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+dns.setDefaultResultOrder("ipv4first");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,7 +17,7 @@ const PORT = process.env.PORT || 3000;
     try {
         console.log("process.env.DB_HOST =", process.env.DB_HOST);
         console.log("config.DB_HOST =", config.DB_HOST);
-        // await connectToDatabase();
+        await connectToDatabase();
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
         });

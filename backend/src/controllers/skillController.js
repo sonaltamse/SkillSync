@@ -4,7 +4,7 @@ export const createSkill = async (req, res) => {
     try {
         const { name, description, level } = req.body;
         const skill = new Skill({ name, description, level });
-        // await skill.save();
+        await skill.save();
         res.status(201).json(skill);
     } catch(error){
         console.error("Error creating skill:", error);
