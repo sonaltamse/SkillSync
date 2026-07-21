@@ -6,6 +6,7 @@ import healthRoutes from "./routes/healthRoutes.js";
 import { config } from "./config/env.js";
 import { connectToDatabase } from "./config/db.js";
 import skillRoutes from "./routes/skillRoutes.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 dns.setDefaultResultOrder("ipv4first");
@@ -42,6 +43,12 @@ app.get("/", (req, res) => {
 app.use("/health", healthRoutes);
 app.use("/skill", skillRoutes)
 
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
+app.use((req, res) => {
+    res.status(404).json({ message: "Route not found" });
+});
+
+app.use(errorHandler);
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
