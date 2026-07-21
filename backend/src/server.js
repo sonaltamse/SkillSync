@@ -4,6 +4,7 @@ import cors from "cors";
 import healthRoutes from "./routes/healthRoutes.js";
 import { config } from "./config/env.js";
 import { connectToDatabase } from "./config/db.js";
+import skillRoutes from "./routes/skillRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,7 +13,7 @@ const PORT = process.env.PORT || 3000;
     try {
         console.log("process.env.DB_HOST =", process.env.DB_HOST);
         console.log("config.DB_HOST =", config.DB_HOST);
-        await connectToDatabase();
+        // await connectToDatabase();
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
         });
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/health", healthRoutes);
+app.use("/skill", skillRoutes)
 
 // app.listen(PORT, () => {
 //     console.log(`Server is running on port ${PORT}`);
